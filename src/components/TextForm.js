@@ -15,6 +15,16 @@ export default function TextForm(props) {
   const handleOnChange = (event) => {
     setText(event.target.value);
   };
+  const handleCopyClick = () => {
+    var text = document.getElementById('myBox');
+    text.select();
+    navigator.clipboard.writeText(text.value);
+  };
+
+  const handleExtraSpace = () => {
+    let newText = text.split(/[ ] + /);
+    setText(newText.join(" "));
+  }
 
   const [text, setText] = useState("");
 
@@ -39,6 +49,12 @@ export default function TextForm(props) {
         </button>
         <button className="btn btn-danger mx-1" onClick={handleClearClick}>
           Clear
+        </button>
+        <button className="btn btn-success mx-1" onClick={handleCopyClick}>
+          Copy
+        </button>
+        <button className="btn btn-light mx-1" onClick={handleExtraSpace}>
+          Remove Extra Spaces
         </button>
       </div>
       <div className="container my-4">
